@@ -1,0 +1,46 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@components": [
+                "src/components"
+            ],
+            "@common": [
+                "src/common"
+            ],
+            "@containers": [
+                "src/containers"
+            ],
+            "@context": [
+                "src/context"
+            ],
+            "@layouts": [
+                "src/layouts"
+            ],
+            "@navigation": [
+                "src/navigation"
+            ],
+            "@screens": [
+                "src/screens"
+            ],
+            "@dataSources": [
+                "src/infrastructure/dataSources"
+            ],
+            "@mappers": [
+                "src/infrastructure/mappers"
+            ],
+            "@api": [
+                "src/infrastructure/api"
+            ],
+            "@types": [
+                "src/types"
+            ],
+            "@utils": [
+                "src/utils"
+            ],
+            "@testingFixtures": [
+                "src/test/fixtures"
+            ]
+        }
+    }
+}
