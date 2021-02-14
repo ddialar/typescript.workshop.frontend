@@ -1,0 +1,5 @@
+export * from './postCard'
+export * from './singlePost'
+export * from './singlePostComment'
+export * from './loginForm'
+export * from './registerForm'
