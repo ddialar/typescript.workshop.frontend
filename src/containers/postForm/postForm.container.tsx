@@ -1,6 +1,6 @@
+import { FC, FormEvent, SyntheticEvent, useState } from 'react'
 import { createNewPost } from '@dataSources'
 import { BasicPost } from '@types'
-import { FC, FormEvent, SyntheticEvent, useState } from 'react'
 import { Button, Form } from 'semantic-ui-react'
 
 const initialValues = {
