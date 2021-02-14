@@ -47,15 +47,14 @@ export const LoginForm: FC<Props> = ({ callback }) => {
   const onSubmit = async (event: SyntheticEvent) => {
     event.preventDefault()
 
-    setLoading(!loading)
+    setLoading(true)
     const result = await login(values)
-    setLoading(!loading)
+    setLoading(false)
 
-    const { error } = result as ApiError
-    if (error) {
-      processLoginError(result as ApiError)
+    if ('error' in result) {
+      processLoginError(result)
     } else {
-      processLoginSuccess(result as AuthenticatedUser)
+      processLoginSuccess(result)
     }
   }
 
