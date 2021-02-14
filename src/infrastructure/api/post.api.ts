@@ -18,3 +18,14 @@ export const getPostByIdApi = async (postId: string) => {
 
   return await runRequest(requestParams)
 }
+
+export const createNewPostApi = async (postBody: string, token: string) => {
+  const requestParams: RequestArgs = {
+    method: 'post',
+    url: `${POSTS_PATH}`,
+    token,
+    body: { postBody }
+  }
+
+  return await runRequest(requestParams)
+}
