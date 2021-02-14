@@ -1,6 +1,6 @@
 import { ApiPost, FullPost, BasicPost } from '@types'
 
-const mapPostFromApiToBasicPost = (post: ApiPost): BasicPost => {
+export const mapPostFromApiToBasicPost = (post: ApiPost): BasicPost => {
   const { id: postId, owner, body, createdAt, comments, likes } = post
 
   const likedByUser = !!likes.find(({ id: likeOwnerId }) => likeOwnerId === owner.id)
