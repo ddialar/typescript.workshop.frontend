@@ -6,18 +6,19 @@ interface BasicPostData {
   id: string
   owner: PostOwner
   body: string
-  likedByUser: boolean
   createdAt: string
+  userIsOwner: boolean
+  userHasLiked: boolean
 }
 
-export interface BasicPost extends BasicPostData {
-  commentsAmount: number
-  likesAmount: number
-}
-
-export interface FullPost extends BasicPostData {
+export interface ApiPost extends BasicPostData {
   comments: PostComment[]
   likes: PostLike[]
 }
 
-export type ApiPost = Omit<FullPost, 'likedByUser'>
+export type BasicPost = BasicPostData & {
+  commentsAmount: number
+  likesAmount: number
+}
+
+export interface FullPost extends ApiPost {}
