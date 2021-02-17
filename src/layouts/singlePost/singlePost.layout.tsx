@@ -37,7 +37,7 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
     )
 
   const generatePostView = (post: FullPost) => {
-    const { owner: { name, surname, avatar }, body, comments, likes, likedByUser, createdAt } = post
+    const { owner: { name, surname, avatar }, body, comments, likes, userHasLiked, createdAt } = post
     return (
       <Grid>
         <Grid.Row>
@@ -51,7 +51,7 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
               createdAt={createdAt}
               body={body}
               likes={likes.length}
-              likedByUser={likedByUser}
+              likedByUser={userHasLiked}
               comments={comments.length}
             />
             {comments && generatePostComments(comments)}
