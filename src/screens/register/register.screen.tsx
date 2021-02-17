@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import { RegisterForm } from '@containers'
 import { SingleForm } from '@layouts'

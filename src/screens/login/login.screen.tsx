@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 
 import { LoginForm } from '@containers'
