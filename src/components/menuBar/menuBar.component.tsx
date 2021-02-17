@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useContext, MouseEvent } from 'react'
+import { FC, useState, useEffect, useContext, MouseEvent } from 'react'
 import { Menu, MenuItemProps } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 

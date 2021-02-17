@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Image } from 'semantic-ui-react'
 
 import { AVATAR_ALT } from './avatar.constants'

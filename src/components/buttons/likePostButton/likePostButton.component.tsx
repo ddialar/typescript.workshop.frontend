@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { Button, Icon, Label } from 'semantic-ui-react'
 
 interface Props {
