@@ -1,37 +1,37 @@
 import { ApiPost, FullPost, BasicPost } from '@types'
 
 export const mapPostFromApiToBasicPost = (post: ApiPost): BasicPost => {
-  const { id: postId, owner, body, createdAt, comments, likes } = post
+  const { id, owner, body, createdAt, comments, likes, userIsOwner, userHasLiked } = post
 
-  const likedByUser = !!likes.find(({ id: likeOwnerId }) => likeOwnerId === owner.id)
-  const commentsAmount = comments.length
-  const likesAmount = likes.length
+  const commentsAmount = (comments && comments.length) || 0
+  const likesAmount = (likes && likes.length) || 0
 
   return {
-    id: postId,
+    id,
     owner,
     body,
-    likedByUser,
+    userIsOwner: !!userIsOwner,
+    userHasLiked: !!userHasLiked,
     commentsAmount,
     likesAmount,
     createdAt
   }
 }
 
-export const mapPostsFromApiToBasicPosts = (posts: ApiPost[] | null): BasicPost[] => (posts && posts.map(mapPostFromApiToBasicPost)) || []
+export const mapPostsFromApiToBasicPosts = (posts: ApiPost[]): BasicPost[] => (posts && posts.map(mapPostFromApiToBasicPost)) || []
 
 export const mapPostFromApiToFullPost = (post: ApiPost | null): FullPost | null => {
   if (!post) { return post }
 
-  const { id: postId, owner, body, createdAt, comments, likes } = post
-  const likedByUser = !!likes.find(({ id: likeOwnerId }) => likeOwnerId === owner.id)
+  const { id, owner, body, createdAt, comments, likes, userIsOwner, userHasLiked } = post
 
   return {
-    id: postId,
+    id,
     owner,
     body,
-    likedByUser,
-    comments,
+    userIsOwner: !!userIsOwner,
+    userHasLiked: !!userHasLiked,
+    comments: comments && comments.length ? comments.map(comment => ({ ...comment, userIsOwner: !!comment.userIsOwner })) : [],
     likes,
     createdAt
   }
