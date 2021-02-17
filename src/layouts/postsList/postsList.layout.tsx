@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, ReactElement, useContext } from 'react'
+import { FC, useState, useEffect, ReactElement, useContext } from 'react'
 import { Grid } from 'semantic-ui-react'
 
 import { SECTION_TITLE, NO_POSTS_MESSAGE } from './postsList.constants'

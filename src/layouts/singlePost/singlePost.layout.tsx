@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { Grid } from 'semantic-ui-react'
 
 import { ApiError, FullPost, PostComment } from '@types'
