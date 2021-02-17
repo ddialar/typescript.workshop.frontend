@@ -7,7 +7,7 @@ import { AppContext } from '@context'
 import { BasicPost } from '@types'
 import { Spinner } from '@components'
 import { PostCard, PostForm } from '@containers'
-import { getAllPosts } from '@dataSources'
+import { getAllPosts, getAllExtendedPosts } from '@dataSources'
 
 export const PostsListLayout: FC = () => {
   const { user } = useContext(AppContext)
@@ -19,7 +19,7 @@ export const PostsListLayout: FC = () => {
     (async () => {
       setLoading(true)
 
-      const result = await getAllPosts()
+      const result = user?.token ? await getAllExtendedPosts(user.token) : await getAllPosts()
 
       if ('error' in result) {
         setError(result.message)
