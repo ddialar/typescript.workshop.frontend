@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 import './postCard.styles.css'
 import { BasicPost } from '@types'
 import { POSTS_PATH } from '@common'
-import { LikePostButton, CommentPostButton, Avatar } from '@components'
+import { LikePostButton, CommentPostButton, Avatar, DeleteButton } from '@components'
 
 interface Props {
     post: BasicPost
 }
 
-export const PostCard: FC<Props> = ({ post: { id, owner, body, commentsAmount, likesAmount, likedByUser, createdAt } }) => {
+export const PostCard: FC<Props> = ({ post: { id, owner, body, commentsAmount, likesAmount, createdAt, userIsOwner, userHasLiked } }) => {
   return (
     <Card fluid>
       <Card.Content as={Link} to={`${POSTS_PATH}/${id}`}>
@@ -24,8 +24,9 @@ export const PostCard: FC<Props> = ({ post: { id, owner, body, commentsAmount, l
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <LikePostButton likes={likesAmount} postId={id} likedByUser={likedByUser} />
+        <LikePostButton likes={likesAmount} postId={id} likedByUser={userHasLiked} />
         <CommentPostButton comments={commentsAmount} postId={id} />
+        {userIsOwner ? <DeleteButton postId={id} callback={() => console.log(`Deleting post '${id}'`)} /> : null}
       </Card.Content>
     </Card>
   )
