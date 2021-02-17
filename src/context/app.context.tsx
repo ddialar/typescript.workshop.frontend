@@ -1,4 +1,4 @@
-import React, { FC, createContext, useState, useEffect } from 'react'
+import { FC, createContext, useState, useEffect } from 'react'
 
 import { AuthenticatedUser } from '@types'
 import { saveUserDataToLocalStorage, removeUserDataFromLocalStorage, checkJwtTokenInLocalStorage } from '@utils'
