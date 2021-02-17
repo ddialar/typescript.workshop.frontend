@@ -13,5 +13,3 @@ export interface AuthenticatedUser {
   token: string
   username: string
 }
-
-// NOTE You were about to start implementing the register services in order to create new users
