@@ -50,7 +50,7 @@ export const PostsListLayout: FC = () => {
         {
           posts.map(post => (
             <Grid.Column key={post.id} style={{ marginBottom: '20px' }}>
-              <PostCard post={post} />
+              <PostCard post={post} token={user?.token} />
             </Grid.Column>
           ))
         }
