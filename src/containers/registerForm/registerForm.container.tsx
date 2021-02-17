@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, SyntheticEvent, useState } from 'react'
+import { FC, FormEvent, SyntheticEvent, useState } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 
 import {
