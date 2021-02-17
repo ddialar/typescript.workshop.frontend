@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
 import { HOME_PATH, LOGIN_PATH, REGISTER_PATH, POSTS_PATH } from './routerConfig.constants'
