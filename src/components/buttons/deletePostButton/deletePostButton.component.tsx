@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { Button, Icon, Confirm } from 'semantic-ui-react'
 
 interface Props {
@@ -11,18 +11,25 @@ export const DeleteButton: FC<Props> = ({ postId, callback }) => {
 
   const deletePost = () => {
     setConfirmOpen(false)
-    // TODO: Remove the post.
     console.log(`Delete post with ID ${postId}`)
     callback && callback()
   }
 
   return (
     <>
-      <Button as="div" color="red" floated="right" onClick={() => setConfirmOpen(true)}>
+      <Button as="div" color="red" floated="right" size="mini" onClick={() => setConfirmOpen(true)}>
         <Icon name="trash" style={{ margin: 0 }}></Icon>
       </Button>
-      <Confirm open={confirmOpen} onCancel={() => setConfirmOpen(false)} onConfirm={deletePost}>
-      </Confirm>
+      <Confirm
+        open={confirmOpen}
+        header="Delete post confimation"
+        content={`Do you really want to delete the post with ID '${postId}'?`}
+        cancelButton="No"
+        confirmButton="Let's do it"
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={deletePost}
+        size="mini"
+      />
     </>
   )
 }
