@@ -5,4 +5,5 @@ export interface PostComment {
   owner: PostCommentOwner
   body: string
   createdAt: string
+  userIsOwner: boolean
 }
