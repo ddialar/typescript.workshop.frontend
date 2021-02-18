@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import './postCard.styles.css'
 import { BasicPost } from '@types'
 import { POSTS_PATH } from '@common'
-import { LikePostButton, CommentPostButton, Avatar, DeleteButton } from '@components'
+import { LikePostButton, CommentPostButton, Avatar, DeletePostButton } from '@components'
 
 interface Props {
     post: BasicPost
