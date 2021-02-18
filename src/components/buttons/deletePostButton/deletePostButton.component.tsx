@@ -3,16 +3,15 @@ import { Button, Icon, Confirm } from 'semantic-ui-react'
 
 interface Props {
     postId: string
-    callback: () => void
+    onClick: () => void
 }
 
-export const DeleteButton: FC<Props> = ({ postId, callback }) => {
+export const DeletePostButton: FC<Props> = ({ postId, onClick }) => {
   const [confirmOpen, setConfirmOpen] = useState(false)
 
-  const deletePost = () => {
+  const runDelete = () => {
     setConfirmOpen(false)
-    console.log(`Delete post with ID ${postId}`)
-    callback && callback()
+    onClick && onClick()
   }
 
   return (
@@ -22,12 +21,12 @@ export const DeleteButton: FC<Props> = ({ postId, callback }) => {
       </Button>
       <Confirm
         open={confirmOpen}
-        header="Delete post confimation"
+        header="Delete post confirmation"
         content={`Do you really want to delete the post with ID '${postId}'?`}
         cancelButton="No"
         confirmButton="Let's do it"
         onCancel={() => setConfirmOpen(false)}
-        onConfirm={deletePost}
+        onConfirm={runDelete}
         size="mini"
       />
     </>
