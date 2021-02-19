@@ -7,7 +7,7 @@ import { AppContext } from '@context'
 import { BasicPost } from '@types'
 import { Spinner } from '@components'
 import { PostCard, PostForm } from '@containers'
-import { getAllPosts, getAllExtendedPosts } from '@dataSources'
+import { getAllPosts, getAllExtendedPosts, deletePostById } from '@dataSources'
 
 export const PostsListLayout: FC = () => {
   const { user } = useContext(AppContext)
@@ -29,10 +29,30 @@ export const PostsListLayout: FC = () => {
 
       setLoading(false)
     })()
-  }, [])
+  }, [user])
 
   const addNewPost = (newPost: BasicPost): void => {
     setPosts([...posts, newPost])
+  }
+
+  const deletePost = async (postId: string): Promise<void> => {
+    console.log(`Deleting post '${postId}' from posts list layout!!!`)
+
+    if (user?.token) {
+      setLoading(true)
+
+      const error = await deletePostById(postId, user.token)
+
+      if (error) {
+        setError(error.message)
+      } else {
+        setPosts(posts.filter(({ id }) => id !== postId))
+      }
+
+      setLoading(false)
+    } else {
+      setError('You must be authenticated in order to delete a post.')
+    }
   }
 
   const processPosts = (posts: BasicPost[]): ReactElement => {
@@ -50,7 +70,7 @@ export const PostsListLayout: FC = () => {
         {
           posts.map(post => (
             <Grid.Column key={post.id} style={{ marginBottom: '20px' }}>
-              <PostCard post={post} token={user?.token} />
+              <PostCard post={post} token={user?.token} onDelete={() => deletePost(post.id)} />
             </Grid.Column>
           ))
         }
