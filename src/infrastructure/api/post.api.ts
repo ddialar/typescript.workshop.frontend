@@ -40,3 +40,14 @@ export const createNewPostApi = async (postBody: string, token: string): Promise
 
   return await runRequest(requestParams)
 }
+
+export const deletePostByIdApi = async (postId: string, token: string): Promise<ApiError | null> => {
+  const requestParams: RequestArgs = {
+    method: 'delete',
+    url: `${POSTS_PATH}`,
+    token,
+    body: { postId }
+  }
+
+  return await runRequest(requestParams)
+}
