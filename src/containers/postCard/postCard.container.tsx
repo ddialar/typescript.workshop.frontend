@@ -9,7 +9,7 @@ import { LikePostButton, CommentPostButton, Avatar, DeletePostButton } from '@co
 
 interface Props {
     post: BasicPost
-    token: string | undefined
+    token?: string
     onDelete: () => void
 }
 
