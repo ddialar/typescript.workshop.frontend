@@ -1,4 +1,4 @@
-import { createNewPostApi, deletePostByIdApi, getAllExtendedPostsApi, getAllPostsApi, getPostByIdApi } from '@api'
+import { createNewPostApi, deletePostByIdApi, getAllExtendedPostsApi, getAllPostsApi, getExtendedPostByIdApi, getPostByIdApi } from '@api'
 import { mapErrorFromApi, mapPostsFromApiToBasicPosts, mapPostFromApiToFullPost, mapPostFromApiToBasicPost } from '@mappers'
 
 export const getAllPosts = async () => {
@@ -13,7 +13,12 @@ export const getAllExtendedPosts = async (token: string) => {
 
 export const getPostById = async (postId: string) => {
   const result = await getPostByIdApi(postId)
-  return result && 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToFullPost(result)
+  return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToFullPost(result)
+}
+
+export const getExtendedPostById = async (postId: string, token: string) => {
+  const result = await getExtendedPostByIdApi(postId, token)
+  return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToFullPost(result)
 }
 
 export const createNewPost = async (postBody: string, token: string) => {
