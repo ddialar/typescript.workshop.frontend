@@ -23,10 +23,6 @@ export const PostForm: FC<Props> = ({ token, addNewPost, setError }) => {
   const onSubmit = async (event: SyntheticEvent) => {
     event.preventDefault()
 
-    // TODO Create the new post.
-    console.log('Creating new post with next data:\n', JSON.stringify(values, null, 4))
-
-    // await createNewPost(values.postBody, token)
     const result = await createNewPost(values.postBody, token)
 
     if ('error' in result) {
