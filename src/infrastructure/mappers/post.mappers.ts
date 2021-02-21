@@ -20,9 +20,7 @@ export const mapPostFromApiToBasicPost = (post: ApiPost): BasicPost => {
 
 export const mapPostsFromApiToBasicPosts = (posts: ApiPost[]): BasicPost[] => (posts && posts.map(mapPostFromApiToBasicPost)) || []
 
-export const mapPostFromApiToFullPost = (post: ApiPost | null): FullPost | null => {
-  if (!post) { return post }
-
+export const mapPostFromApiToFullPost = (post: ApiPost): FullPost => {
   const { id, owner, body, createdAt, comments, likes, userIsOwner, userHasLiked } = post
 
   return {
