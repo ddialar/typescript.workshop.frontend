@@ -21,10 +21,20 @@ export const getAllExtendedPostsApi = async (token: string): Promise<ApiPost[] |
   return await runRequest(requestParams)
 }
 
-export const getPostByIdApi = async (postId: string): Promise<ApiPost | null | ApiError> => {
+export const getPostByIdApi = async (postId: string): Promise<ApiPost | ApiError> => {
   const requestParams: RequestArgs = {
     method: 'get',
     url: `${POSTS_PATH}/${postId}`
+  }
+
+  return await runRequest(requestParams)
+}
+
+export const getExtendedPostByIdApi = async (postId: string, token: string): Promise<ApiPost | ApiError> => {
+  const requestParams: RequestArgs = {
+    method: 'get',
+    url: `${POSTS_EXTENDED_PATH}/${postId}`,
+    token
   }
 
   return await runRequest(requestParams)
