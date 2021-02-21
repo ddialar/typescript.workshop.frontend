@@ -1,16 +1,21 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 
-import { ApiError, FullPost, PostComment } from '@types'
+import { FullPost, PostComment } from '@types'
 import { SinglePost, SinglePostComment } from '@containers'
 import { Avatar, ErrorComponent, Spinner } from '@components'
 
-import { getPostById } from '@dataSources'
+import { deletePostById, getExtendedPostById, getPostById } from '@dataSources'
+import { AppContext } from '@context'
+import { POSTS_PATH } from '@navigation'
 interface Props {
     postId: string
 }
 
 export const SinglePostLayout: FC<Props> = ({ postId }) => {
+  const history = useHistory()
+  const { user } = useContext(AppContext)
   const [post, setPost] = useState<FullPost | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -18,18 +23,39 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
   useEffect(() => {
     (async () => {
       setLoading(true)
-      const result = await getPostById(postId)
 
-      const { error } = result as ApiError
-      if (error) {
-        const { message } = result as ApiError
-        setError(message)
+      const result = user?.token ? await getExtendedPostById(postId, user.token) : await getPostById(postId)
+
+      if ('error' in result) {
+        setError(result.message)
       } else {
-        setPost(result as FullPost | null)
+        setPost(result)
       }
+
       setLoading(false)
     })()
-  }, [postId])
+  }, [])
+
+  const deletePost = async (postId: string): Promise<void> => {
+    console.log(`Deleting post '${postId}' from posts list layout!!!`)
+
+    if (user?.token) {
+      setLoading(true)
+
+      const error = await deletePostById(postId, user.token)
+
+      if (error) {
+        setError(error.message)
+      } else {
+        setPost(null)
+        history.push(POSTS_PATH)
+      }
+
+      setLoading(false)
+    } else {
+      setError('You must be authenticated in order to delete a post.')
+    }
+  }
 
   const generatePostComments = (postComments: PostComment[]) => postComments
     .map(({ id, owner: { name, surname }, body, createdAt }) =>
@@ -37,7 +63,7 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
     )
 
   const generatePostView = (post: FullPost) => {
-    const { owner: { name, surname, avatar }, body, comments, likes, userHasLiked, createdAt } = post
+    const { owner: { avatar }, comments } = post
     return (
       <Grid>
         <Grid.Row>
@@ -46,13 +72,9 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
           </Grid.Column>
           <Grid.Column width={14}>
             <SinglePost
-              postId={postId}
-              postOwner={`${name} ${surname}`}
-              createdAt={createdAt}
-              body={body}
-              likes={likes.length}
-              likedByUser={userHasLiked}
-              comments={comments.length}
+              post={post}
+              token={user?.token}
+              onDelete={() => deletePost(post.id)}
             />
             {comments && generatePostComments(comments)}
           </Grid.Column>
