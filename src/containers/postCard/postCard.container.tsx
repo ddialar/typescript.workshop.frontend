@@ -10,10 +10,11 @@ import { LikePostButton, CommentPostButton, Avatar, DeletePostButton } from '@co
 interface Props {
     post: BasicPost
     token?: string
+    onLike: () => void
     onDelete: () => void
 }
 
-export const PostCard: FC<Props> = ({ post: { id, owner, body, commentsAmount, likesAmount, createdAt, userIsOwner, userHasLiked }, token, onDelete }) => {
+export const PostCard: FC<Props> = ({ post: { id, owner, body, commentsAmount, likesAmount, createdAt, userIsOwner, userHasLiked }, token, onLike, onDelete }) => {
   return (
     <Card fluid>
       <Card.Content as={Link} to={`${POSTS_PATH}/${id}`}>
@@ -26,7 +27,7 @@ export const PostCard: FC<Props> = ({ post: { id, owner, body, commentsAmount, l
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <LikePostButton likes={likesAmount} postId={id} likedByUser={userHasLiked} />
+        <LikePostButton likes={likesAmount} userHasLiked={userHasLiked} onClick={() => onLike()} />
         <CommentPostButton comments={commentsAmount} postId={id} />
         {token && userIsOwner ? <DeletePostButton postId={id} onClick={() => onDelete()} /> : null}
       </Card.Content>
