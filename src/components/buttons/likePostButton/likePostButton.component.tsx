@@ -1,24 +1,16 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { Button, Icon, Label } from 'semantic-ui-react'
 
 interface Props {
     likes: number
-    postId: string
-    likedByUser: boolean
+    userHasLiked: boolean
+    onClick: () => void
 }
 
-export const LikePostButton: FC<Props> = ({ likes, postId, likedByUser = false }) => {
-  const [liked, setLiked] = useState(likedByUser)
-
-  const handleLikePost = () => {
-    // TODO: Connect with API and like button
-    setLiked(!liked)
-    console.log(`Post ${postId} like button pushed!!!`)
-  }
-
+export const LikePostButton: FC<Props> = ({ likes, userHasLiked = false, onClick }) => {
   return (
-    <Button as="div" labelPosition="right" size="mini" onClick={handleLikePost}>
-      <Button color="teal" basic={!liked} compact>
+    <Button as="div" labelPosition="right" size="mini" onClick={onClick}>
+      <Button color="teal" basic={!userHasLiked} compact>
         <Icon name="heart"></Icon>
       </Button>
       <Label color="teal" pointing="left" basic>{likes}</Label>
