@@ -7,7 +7,7 @@ import { AppContext } from '@context'
 import { BasicPost } from '@types'
 import { Spinner } from '@components'
 import { PostCard, PostForm } from '@containers'
-import { getAllPosts, getAllExtendedPosts, deletePostById } from '@dataSources'
+import { getAllPosts, getAllExtendedPosts, deletePostById, dislikePost, likePost } from '@dataSources'
 
 export const PostsListLayout: FC = () => {
   const { user } = useContext(AppContext)
@@ -35,9 +35,24 @@ export const PostsListLayout: FC = () => {
     setPosts([...posts, newPost])
   }
 
-  const deletePost = async (postId: string): Promise<void> => {
-    console.log(`Deleting post '${postId}' from posts list layout!!!`)
+  const toggleLikePost = async (postId: string, isLiked: boolean): Promise<void> => {
+    if (user?.token) {
+      const result = isLiked ? await dislikePost(postId, user.token) : await likePost(postId, user.token)
 
+      if ('error' in result) {
+        setError(result.message)
+      } else {
+        const postsCopy = [...posts]
+        const affectedPostIndex = postsCopy.findIndex(({ id }) => id === postId)!
+        postsCopy[affectedPostIndex] = { ...postsCopy[affectedPostIndex], userHasLiked: result.userHasLiked, likesAmount: result.likesAmount }
+        setPosts(postsCopy)
+      }
+    } else {
+      setError('You must be authenticated in order to like a post.')
+    }
+  }
+
+  const deletePost = async (postId: string): Promise<void> => {
     if (user?.token) {
       setLoading(true)
 
@@ -62,7 +77,11 @@ export const PostsListLayout: FC = () => {
           user?.token
             ? (
               <Grid.Column style={{ marginBottom: '20px' }}>
-                <PostForm token={user.token} addNewPost={addNewPost} setError={setError} />
+                <PostForm
+                  token={user.token}
+                  addNewPost={addNewPost}
+                  setError={setError}
+                />
               </Grid.Column>
             )
             : null
@@ -70,7 +89,12 @@ export const PostsListLayout: FC = () => {
         {
           posts.map(post => (
             <Grid.Column key={post.id} style={{ marginBottom: '20px' }}>
-              <PostCard post={post} token={user?.token} onDelete={() => deletePost(post.id)} />
+              <PostCard
+                post={post}
+                token={user?.token}
+                onLike={() => toggleLikePost(post.id, post.userHasLiked)}
+                onDelete={() => deletePost(post.id)}
+              />
             </Grid.Column>
           ))
         }
