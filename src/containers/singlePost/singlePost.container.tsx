@@ -7,10 +7,11 @@ import { FullPost } from '@types'
 interface Props {
   post: FullPost
   token?: string
+  onLike: () => void
   onDelete: () => void
 }
 
-export const SinglePost: FC<Props> = ({ post: { id, owner, createdAt, body, userIsOwner, userHasLiked, comments, likes }, token, onDelete }) => (
+export const SinglePost: FC<Props> = ({ post: { id, owner, createdAt, body, userIsOwner, userHasLiked, comments, likes }, token, onLike, onDelete }) => (
   <Card fluid>
     <Card.Content>
       <Card.Header>{`${owner.name} ${owner.surname}`}</Card.Header>
@@ -19,7 +20,7 @@ export const SinglePost: FC<Props> = ({ post: { id, owner, createdAt, body, user
     </Card.Content>
     <hr />
     <Card.Content extra>
-      <LikePostButton likes={likes.length} postId={id} likedByUser={userHasLiked} />
+      <LikePostButton likes={likes.length} userHasLiked={userHasLiked} onClick={() => onLike()} />
       <CommentPostButton comments={comments.length} postId={id} />
       {token && userIsOwner ? <DeletePostButton postId={id} onClick={() => onDelete()} /> : null}
     </Card.Content>
