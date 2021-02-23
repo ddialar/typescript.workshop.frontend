@@ -1,4 +1,4 @@
-import { createNewPostApi, deletePostByIdApi, getAllExtendedPostsApi, getAllPostsApi, getExtendedPostByIdApi, getPostByIdApi } from '@api'
+import { createNewPostApi, deletePostByIdApi, dislikePostApi, getAllExtendedPostsApi, getAllPostsApi, getExtendedPostByIdApi, getPostByIdApi, likePostApi } from '@api'
 import { mapErrorFromApi, mapPostsFromApiToBasicPosts, mapPostFromApiToFullPost, mapPostFromApiToBasicPost } from '@mappers'
 
 export const getAllPosts = async () => {
@@ -23,6 +23,16 @@ export const getExtendedPostById = async (postId: string, token: string) => {
 
 export const createNewPost = async (postBody: string, token: string) => {
   const result = await createNewPostApi(postBody, token)
+  return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToBasicPost(result)
+}
+
+export const likePost = async (postId: string, token: string) => {
+  const result = await likePostApi(postId, token)
+  return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToBasicPost(result)
+}
+
+export const dislikePost = async (postId: string, token: string) => {
+  const result = await dislikePostApi(postId, token)
   return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToBasicPost(result)
 }
 
