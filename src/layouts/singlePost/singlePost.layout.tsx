@@ -6,7 +6,7 @@ import { FullPost, PostComment } from '@types'
 import { SinglePost, SinglePostComment } from '@containers'
 import { Avatar, ErrorComponent, Spinner } from '@components'
 
-import { deletePostById, getExtendedPostById, getPostById } from '@dataSources'
+import { deletePostById, dislikePost, getExtendedPostById, getPostById, likePost } from '@dataSources'
 import { AppContext } from '@context'
 import { POSTS_PATH } from '@navigation'
 interface Props {
@@ -36,9 +36,21 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
     })()
   }, [])
 
-  const deletePost = async (postId: string): Promise<void> => {
-    console.log(`Deleting post '${postId}' from posts list layout!!!`)
+  const toggleLikePost = async (postId: string, isLiked: boolean): Promise<void> => {
+    if (user?.token) {
+      const result = isLiked ? await dislikePost(postId, user.token) : await likePost(postId, user.token)
 
+      if ('error' in result) {
+        setError(result.message)
+      } else {
+        post && setPost({ ...post, userHasLiked: result.userHasLiked })
+      }
+    } else {
+      setError('You must be authenticated in order to like this post.')
+    }
+  }
+
+  const deletePost = async (postId: string): Promise<void> => {
     if (user?.token) {
       setLoading(true)
 
@@ -63,7 +75,7 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
     )
 
   const generatePostView = (post: FullPost) => {
-    const { owner: { avatar }, comments } = post
+    const { id, owner: { avatar }, comments } = post
     return (
       <Grid>
         <Grid.Row>
@@ -74,7 +86,8 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
             <SinglePost
               post={post}
               token={user?.token}
-              onDelete={() => deletePost(post.id)}
+              onLike={() => toggleLikePost(id, post.userHasLiked)}
+              onDelete={() => deletePost(id)}
             />
             {comments && generatePostComments(comments)}
           </Grid.Column>
