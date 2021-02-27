@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import './postCard.styles.css'
 import { BasicPost } from '@types'
 import { POSTS_PATH } from '@common'
-import { LikePostButton, CommentPostButton, Avatar, DeletePostButton } from '@components'
+import { LikePostButton, CommentPostButton, Avatar, DeleteButton } from '@components'
 
 interface Props {
     post: BasicPost
@@ -29,7 +29,14 @@ export const PostCard: FC<Props> = ({ post: { id, owner, body, commentsAmount, l
       <Card.Content extra>
         <LikePostButton likes={likesAmount} userHasLiked={userHasLiked} onClick={() => onLike()} />
         <CommentPostButton comments={commentsAmount} postId={id} />
-        {token && userIsOwner ? <DeletePostButton postId={id} onClick={() => onDelete()} /> : null}
+        {
+          token && userIsOwner
+            ? <DeleteButton
+              title="Delete post confirmation"
+              message="Do you really want to delete this post?"
+              onClick={() => onDelete()} />
+            : null
+        }
       </Card.Content>
     </Card>
   )
