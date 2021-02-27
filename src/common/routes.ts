@@ -1,4 +1,5 @@
 export const HOME_PATH = '/'
+export const SIGNIN_PATH = '/signin'
 export const LOGIN_PATH = '/login'
 export const LOGOUT_PATH = '/logout'
 export const REGISTER_PATH = '/register'
