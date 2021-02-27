@@ -1,3 +1,3 @@
 export * from './likePostButton'
 export * from './commentPostButton'
-export * from './deletePostButton'
+export * from './deleteButton'
