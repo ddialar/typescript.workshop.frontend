@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Card } from 'semantic-ui-react'
 
-import { LikePostButton, CommentPostButton, DeletePostButton } from '@components'
+import { LikePostButton, CommentPostButton, DeleteButton } from '@components'
 import { FullPost } from '@types'
 
 interface Props {
@@ -22,7 +22,14 @@ export const SinglePost: FC<Props> = ({ post: { id, owner, createdAt, body, user
     <Card.Content extra>
       <LikePostButton likes={likes.length} userHasLiked={userHasLiked} onClick={() => onLike()} />
       <CommentPostButton comments={comments.length} postId={id} />
-      {token && userIsOwner ? <DeletePostButton postId={id} onClick={() => onDelete()} /> : null}
+      {
+        token && userIsOwner
+          ? <DeleteButton
+            title="Delete post confirmation"
+            message="Do you really want to delete this post?"
+            onClick={() => onDelete()} />
+          : null
+      }
     </Card.Content>
   </Card>
 )
