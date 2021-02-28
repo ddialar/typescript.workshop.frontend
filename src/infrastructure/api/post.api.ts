@@ -1,3 +1,4 @@
+import { POSTS_COMMENT_PATH } from './../../common/routes'
 import { runRequest, RequestArgs } from './api'
 import { POSTS_EXTENDED_PATH, POSTS_LIKE_PATH, POSTS_PATH } from '@common'
 import { ApiPost, ApiError } from '@types'
@@ -47,6 +48,19 @@ export const createNewPostApi = async (postBody: string, token: string): Promise
     token,
     body: { postBody }
   }
+
+  return await runRequest(requestParams)
+}
+
+export const createNewPostCommentApi = async (postId: string, commentBody: string, token: string): Promise<ApiPost | ApiError> => {
+  const requestParams: RequestArgs = {
+    method: 'post',
+    url: `${POSTS_COMMENT_PATH}`,
+    token,
+    body: { postId, commentBody }
+  }
+
+  console.log({ requestParams })
 
   return await runRequest(requestParams)
 }
