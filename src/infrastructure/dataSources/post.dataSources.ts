@@ -62,7 +62,17 @@ export const likePost = async (postId: string, token: string) => {
   return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToBasicPost(result)
 }
 
+export const likeExtendedPost = async (postId: string, token: string) => {
+  const result = await likePostApi(postId, token)
+  return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToFullPost(result)
+}
+
 export const dislikePost = async (postId: string, token: string) => {
   const result = await dislikePostApi(postId, token)
   return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToBasicPost(result)
+}
+
+export const dislikeExtendedPost = async (postId: string, token: string) => {
+  const result = await dislikePostApi(postId, token)
+  return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToFullPost(result)
 }
