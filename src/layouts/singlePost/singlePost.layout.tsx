@@ -6,7 +6,15 @@ import { FullPost, PostComment, SingleFormValue } from '@types'
 import { SingleFieldForm, SinglePost, SinglePostComment } from '@containers'
 import { Avatar, ErrorComponent, Spinner } from '@components'
 
-import { createNewPostComment, deletePostById, deletePostComment, dislikePost, getExtendedPostById, getPostById, likePost } from '@dataSources'
+import {
+  createNewPostComment,
+  deletePostById,
+  deletePostComment,
+  dislikeExtendedPost,
+  getExtendedPostById,
+  getPostById,
+  likeExtendedPost
+} from '@dataSources'
 import { AppContext } from '@context'
 import { POSTS_PATH } from '@navigation'
 interface Props {
@@ -38,12 +46,12 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
 
   const toggleLikePost = async (postId: string, isLiked: boolean): Promise<void> => {
     if (user?.token) {
-      const result = isLiked ? await dislikePost(postId, user.token) : await likePost(postId, user.token)
+      const result = isLiked ? await dislikeExtendedPost(postId, user.token) : await likeExtendedPost(postId, user.token)
 
       if ('error' in result) {
         setError(result.message)
       } else {
-        post && setPost({ ...post, userHasLiked: result.userHasLiked })
+        setPost(result)
       }
     } else {
       setError('You must be authenticated in order to like this post.')
