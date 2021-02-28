@@ -2,11 +2,11 @@ import { FC, useState, useEffect, useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 
-import { FullPost, PostComment } from '@types'
-import { SinglePost, SinglePostComment } from '@containers'
+import { FullPost, PostComment, SingleFormValue } from '@types'
+import { SingleFieldForm, SinglePost, SinglePostComment } from '@containers'
 import { Avatar, ErrorComponent, Spinner } from '@components'
 
-import { deletePostById, dislikePost, getExtendedPostById, getPostById, likePost } from '@dataSources'
+import { createNewPostComment, deletePostById, deletePostComment, dislikePost, getExtendedPostById, getPostById, likePost } from '@dataSources'
 import { AppContext } from '@context'
 import { POSTS_PATH } from '@navigation'
 interface Props {
@@ -69,14 +69,25 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
     }
   }
 
-  const addPostComment = async (commentBody: SingleFormValue['fieldContent']) => {
+  const addComment = async (commentBody: SingleFormValue['fieldContent']) => {
     const { token } = user!
     const { id: postId } = post!
-    console.log(`Adding comment '${commentBody}' to post '${postId}'`)
 
     const result = await createNewPostComment(postId, commentBody, token)
 
-    console.log({ result })
+    if ('error' in result) {
+      setError(result.message)
+    } else {
+      setError(null)
+      setPost(result)
+    }
+  }
+
+  const deleteComment = async (commentId: string) => {
+    const { token } = user!
+    const { id: postId } = post!
+
+    const result = await deletePostComment(postId, commentId, token)
 
     if ('error' in result) {
       setError(result.message)
@@ -87,16 +98,8 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
   }
 
   const generatePostComments = (postComments: PostComment[]) => postComments
-    .map(({ id, owner: { name, surname }, body, createdAt }) =>
-      <SinglePostComment key={id} commentOwner={`${name} ${surname}`} body={body} createdAt={createdAt} />
-            {
-              user?.token
-                ? <SingleFieldForm
-                  title="New post comment:"
-                  placeholder="Really nice content!!!"
-                  onSubmit={addPostComment} />
-                : null
-            }
+    .map(comment =>
+      <SinglePostComment key={comment.id} comment={comment} token={user?.token} onDelete={() => deleteComment(comment.id)} />
     )
 
   const generatePostView = (post: FullPost) => {
@@ -119,7 +122,7 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
                 ? <SingleFieldForm
                   title="New post comment:"
                   placeholder="Really nice content!!!"
-                  onSubmit={addPostComment} />
+                  onSubmit={addComment} />
                 : null
             }
             {comments && generatePostComments(comments)}
@@ -130,8 +133,8 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
   }
 
   const showContent = () => {
-    return post ? generatePostView(post as FullPost) : (<Spinner active={loading}/>)
+    return post ? generatePostView(post) : (<Spinner active={loading}/>)
   }
 
-  return error ? (<ErrorComponent message={error as string}/>) : showContent()
+  return error ? (<ErrorComponent message={error}/>) : showContent()
 }
