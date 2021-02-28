@@ -1,5 +1,20 @@
-import { createNewPostApi, deletePostByIdApi, dislikePostApi, getAllExtendedPostsApi, getAllPostsApi, getExtendedPostByIdApi, getPostByIdApi, likePostApi } from '@api'
-import { mapErrorFromApi, mapPostsFromApiToBasicPosts, mapPostFromApiToFullPost, mapPostFromApiToBasicPost } from '@mappers'
+import {
+  createNewPostApi,
+  createNewPostCommentApi,
+  deletePostByIdApi,
+  dislikePostApi,
+  getAllExtendedPostsApi,
+  getAllPostsApi,
+  getExtendedPostByIdApi,
+  getPostByIdApi,
+  likePostApi
+} from '@api'
+import {
+  mapErrorFromApi,
+  mapPostsFromApiToBasicPosts,
+  mapPostFromApiToFullPost,
+  mapPostFromApiToBasicPost
+} from '@mappers'
 
 export const getAllPosts = async () => {
   const result = await getAllPostsApi()
@@ -24,6 +39,11 @@ export const getExtendedPostById = async (postId: string, token: string) => {
 export const createNewPost = async (postBody: string, token: string) => {
   const result = await createNewPostApi(postBody, token)
   return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToBasicPost(result)
+}
+
+export const createNewPostComment = async (postId: string, commentBody: string, token: string) => {
+  const result = await createNewPostCommentApi(postId, commentBody, token)
+  return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToFullPost(result)
 }
 
 export const likePost = async (postId: string, token: string) => {
