@@ -60,7 +60,16 @@ export const createNewPostCommentApi = async (postId: string, commentBody: strin
     body: { postId, commentBody }
   }
 
-  console.log({ requestParams })
+  return await runRequest(requestParams)
+}
+
+export const deletePostCommentApi = async (postId: string, commentId: string, token: string): Promise<ApiPost | ApiError> => {
+  const requestParams: RequestArgs = {
+    method: 'delete',
+    url: `${POSTS_COMMENT_PATH}`,
+    token,
+    body: { postId, commentId }
+  }
 
   return await runRequest(requestParams)
 }
