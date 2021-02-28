@@ -2,6 +2,7 @@ import {
   createNewPostApi,
   createNewPostCommentApi,
   deletePostByIdApi,
+  deletePostCommentApi,
   dislikePostApi,
   getAllExtendedPostsApi,
   getAllPostsApi,
@@ -41,8 +42,18 @@ export const createNewPost = async (postBody: string, token: string) => {
   return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToBasicPost(result)
 }
 
+export const deletePostById = async (postId: string, token: string) => {
+  const error = await deletePostByIdApi(postId, token)
+  return error ? mapErrorFromApi(error) : null
+}
+
 export const createNewPostComment = async (postId: string, commentBody: string, token: string) => {
   const result = await createNewPostCommentApi(postId, commentBody, token)
+  return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToFullPost(result)
+}
+
+export const deletePostComment = async (postId: string, commentId: string, token: string) => {
+  const result = await deletePostCommentApi(postId, commentId, token)
   return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToFullPost(result)
 }
 
@@ -54,9 +65,4 @@ export const likePost = async (postId: string, token: string) => {
 export const dislikePost = async (postId: string, token: string) => {
   const result = await dislikePostApi(postId, token)
   return 'error' in result ? mapErrorFromApi(result) : mapPostFromApiToBasicPost(result)
-}
-
-export const deletePostById = async (postId: string, token: string) => {
-  const error = await deletePostByIdApi(postId, token)
-  return error ? mapErrorFromApi(error) : null
 }
