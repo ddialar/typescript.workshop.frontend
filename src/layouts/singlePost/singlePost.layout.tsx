@@ -69,9 +69,34 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
     }
   }
 
+  const addPostComment = async (commentBody: SingleFormValue['fieldContent']) => {
+    const { token } = user!
+    const { id: postId } = post!
+    console.log(`Adding comment '${commentBody}' to post '${postId}'`)
+
+    const result = await createNewPostComment(postId, commentBody, token)
+
+    console.log({ result })
+
+    if ('error' in result) {
+      setError(result.message)
+    } else {
+      setError(null)
+      setPost(result)
+    }
+  }
+
   const generatePostComments = (postComments: PostComment[]) => postComments
     .map(({ id, owner: { name, surname }, body, createdAt }) =>
       <SinglePostComment key={id} commentOwner={`${name} ${surname}`} body={body} createdAt={createdAt} />
+            {
+              user?.token
+                ? <SingleFieldForm
+                  title="New post comment:"
+                  placeholder="Really nice content!!!"
+                  onSubmit={addPostComment} />
+                : null
+            }
     )
 
   const generatePostView = (post: FullPost) => {
@@ -89,6 +114,14 @@ export const SinglePostLayout: FC<Props> = ({ postId }) => {
               onLike={() => toggleLikePost(id, post.userHasLiked)}
               onDelete={() => deletePost(id)}
             />
+            {
+              user?.token
+                ? <SingleFieldForm
+                  title="New post comment:"
+                  placeholder="Really nice content!!!"
+                  onSubmit={addPostComment} />
+                : null
+            }
             {comments && generatePostComments(comments)}
           </Grid.Column>
         </Grid.Row>
