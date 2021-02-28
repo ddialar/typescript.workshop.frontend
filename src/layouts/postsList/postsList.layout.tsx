@@ -4,10 +4,10 @@ import { Grid } from 'semantic-ui-react'
 import { SECTION_TITLE, NO_POSTS_MESSAGE } from './postsList.constants'
 
 import { AppContext } from '@context'
-import { BasicPost } from '@types'
+import { BasicPost, SingleFormValue } from '@types'
 import { Spinner } from '@components'
-import { PostCard, PostForm } from '@containers'
-import { getAllPosts, getAllExtendedPosts, deletePostById, dislikePost, likePost } from '@dataSources'
+import { PostCard, SingleFieldForm } from '@containers'
+import { getAllPosts, getAllExtendedPosts, deletePostById, dislikePost, likePost, createNewPost } from '@dataSources'
 
 export const PostsListLayout: FC = () => {
   const { user } = useContext(AppContext)
@@ -31,10 +31,6 @@ export const PostsListLayout: FC = () => {
     })()
   }, [user])
 
-  const addNewPost = (newPost: BasicPost): void => {
-    setPosts([...posts, newPost])
-  }
-
   const toggleLikePost = async (postId: string, isLiked: boolean): Promise<void> => {
     if (user?.token) {
       const result = isLiked ? await dislikePost(postId, user.token) : await likePost(postId, user.token)
@@ -49,6 +45,19 @@ export const PostsListLayout: FC = () => {
       }
     } else {
       setError('You must be authenticated in order to like a post.')
+    }
+  }
+
+  const addPost = async (postBody: SingleFormValue['fieldContent']) => {
+    const { token } = user!
+
+    const result = await createNewPost(postBody, token)
+
+    if ('error' in result) {
+      setError(result.message)
+    } else {
+      setError(null)
+      setPosts([...posts, result])
     }
   }
 
@@ -77,10 +86,10 @@ export const PostsListLayout: FC = () => {
           user?.token
             ? (
               <Grid.Column style={{ marginBottom: '20px' }}>
-                <PostForm
-                  token={user.token}
-                  addNewPost={addNewPost}
-                  setError={setError}
+                <SingleFieldForm
+                  title="Create a new post:"
+                  placeholder="Hi world!!!"
+                  onSubmit={addPost}
                 />
               </Grid.Column>
             )
