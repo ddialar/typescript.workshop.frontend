@@ -31,7 +31,6 @@ export const runRequest = async ({ method, url, body, token, params, timeout = 5
   } catch (error) {
     // NOTE: 'error' is AxiosError type.
     const data = error.response?.data?.error ? error.response.data : { error: true, message: error.message }
-    console.log({ data })
     return data
   }
 }
