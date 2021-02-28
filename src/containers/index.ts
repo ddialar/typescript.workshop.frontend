@@ -1,5 +1,5 @@
 export * from './postCard'
-export * from './postForm'
+export * from './singleFieldForm'
 export * from './singlePost'
 export * from './singlePostComment'
 export * from './loginForm'
