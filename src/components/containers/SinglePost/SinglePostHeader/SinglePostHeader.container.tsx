@@ -11,7 +11,7 @@ interface Props {
   onDelete: () => void
 }
 
-export const SinglePost: FC<Props> = ({ post: { id, owner, createdAt, body, userIsOwner, userHasLiked, comments, likes }, token, onLike, onDelete }) => (
+export const SinglePostHeader: FC<Props> = ({ post: { id, owner, createdAt, body, userIsOwner, userHasLiked, comments, likes }, token, onLike, onDelete }) => (
   <Card fluid>
     <Card.Content>
       <Card.Header>{`${owner.name} ${owner.surname}`}</Card.Header>

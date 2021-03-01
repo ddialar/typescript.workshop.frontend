@@ -1,1 +1,3 @@
-export * from './SinglePost.container'
+export * from './SinglePost'
+export * from './SinglePostHeader'
+export * from './SinglePostComment'
