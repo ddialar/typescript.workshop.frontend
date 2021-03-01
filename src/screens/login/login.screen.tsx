@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 
-import { LoginForm } from '@containers'
+import { LoginForm } from '@components'
 import { SingleForm } from '@layouts'
 import { HOME_PATH } from '@common'
 

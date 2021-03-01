@@ -3,8 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { Grid } from 'semantic-ui-react'
 
 import { FullPost, PostComment, SingleFormValue } from '@types'
-import { SingleFieldForm, SinglePost, SinglePostComment } from '@containers'
-import { Avatar, ErrorComponent, Spinner } from '@components'
+import { SingleFieldForm, SinglePost, SinglePostComment, Avatar, ErrorComponent, Spinner } from '@components'
 
 import {
   createNewPostComment,

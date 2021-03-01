@@ -8,9 +8,6 @@
             "@common": [
                 "src/common"
             ],
-            "@containers": [
-                "src/containers"
-            ],
             "@context": [
                 "src/context"
             ],

@@ -5,8 +5,7 @@ import { SECTION_TITLE, NO_POSTS_MESSAGE } from './postsList.constants'
 
 import { AppContext } from '@context'
 import { BasicPost, SingleFormValue } from '@types'
-import { Spinner } from '@components'
-import { PostCard, SingleFieldForm } from '@containers'
+import { PostCard, SingleFieldForm, Spinner } from '@components'
 import { getAllPosts, getAllExtendedPosts, deletePostById, dislikePost, likePost, createNewPost } from '@dataSources'
 
 export const PostsListLayout: FC = () => {
