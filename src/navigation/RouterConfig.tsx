@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import { HOME_PATH, LOGIN_PATH, REGISTER_PATH, POSTS_PATH } from './routerConfig.constants'
+import { HOME_PATH, LOGIN_PATH, REGISTER_PATH, POSTS_PATH } from '@common'
 import { HomeScreen, SinglePostScreen, LoginScreen, RegisterScreen } from '@pages'
 
 export const RouterConfig: FC = () => (

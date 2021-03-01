@@ -1,2 +1,1 @@
-export * from './routerConfig.component'
-export * from './routerConfig.constants'
+export * from './RouterConfig'
