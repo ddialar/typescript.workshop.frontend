@@ -1,3 +1,2 @@
-export * from './postsList'
-export * from './singlePost'
-export * from './singleForm'
+export * from './SinglePost'
+export * from './SingleForm'

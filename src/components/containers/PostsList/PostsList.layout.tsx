@@ -1,14 +1,14 @@
 import { FC, useState, useEffect, ReactElement, useContext } from 'react'
 import { Grid } from 'semantic-ui-react'
 
-import { SECTION_TITLE, NO_POSTS_MESSAGE } from './postsList.constants'
+import { SECTION_TITLE, NO_POSTS_MESSAGE } from './PostsList.constants'
 
 import { AppContext } from '@context'
 import { BasicPost, SingleFormValue } from '@types'
 import { PostCard, SingleFieldForm, Spinner } from '@components'
 import { getAllPosts, getAllExtendedPosts, deletePostById, dislikePost, likePost, createNewPost } from '@dataSources'
 
-export const PostsListLayout: FC = () => {
+export const PostsList: FC = () => {
   const { user } = useContext(AppContext)
   const [posts, setPosts] = useState<BasicPost[]>([])
   const [loading, setLoading] = useState(false)

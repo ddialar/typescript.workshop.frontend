@@ -1,5 +1,5 @@
 import { FC } from 'react'
 
-import { PostsListLayout } from '@layouts'
+import { PostsList } from '@components'
 
-export const HomeScreen: FC = () => <PostsListLayout />
+export const HomeScreen: FC = () => <PostsList />
