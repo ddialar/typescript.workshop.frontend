@@ -1,6 +1,5 @@
-import { POSTS_COMMENT_PATH } from './../../common/routes'
 import { runRequest, RequestArgs } from './api'
-import { POSTS_EXTENDED_PATH, POSTS_LIKE_PATH, POSTS_PATH } from '@common'
+import { POSTS_EXTENDED_PATH, POSTS_LIKE_PATH, POSTS_PATH, POSTS_COMMENT_PATH } from '@common'
 import { ApiPost, ApiError } from '@types'
 
 export const getAllPostsApi = async (): Promise<ApiPost[] | ApiError> => {
