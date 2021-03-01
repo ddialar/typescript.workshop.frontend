@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import './singleForm.styles.css'
+import './SingleForm.styles.css'
 
 export const SingleForm: FC = ({ children }) => (
   <div className="single-form-container">
