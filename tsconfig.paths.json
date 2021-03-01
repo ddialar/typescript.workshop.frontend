@@ -17,8 +17,8 @@
             "@navigation": [
                 "src/navigation"
             ],
-            "@screens": [
-                "src/screens"
+            "@pages": [
+                "src/pages"
             ],
             "@dataSources": [
                 "src/infrastructure/dataSources"
