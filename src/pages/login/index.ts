@@ -1,1 +1,1 @@
-export * from './login.screen'
+export * from './Login.page'

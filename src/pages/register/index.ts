@@ -1,1 +1,1 @@
-export * from './register.screen'
+export * from './Register.page'

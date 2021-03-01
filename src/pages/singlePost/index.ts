@@ -1,1 +1,1 @@
-export * from './singlePost.screen'
+export * from './SinglePost.page'
