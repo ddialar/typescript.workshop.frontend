@@ -1,6 +1,5 @@
 import { FC } from 'react'
 
-import { RegisterForm } from '@components'
-import { SingleForm } from '@layouts'
+import { FormWrapper, RegisterForm } from '@components'
 
-export const RegisterScreen: FC = () => <SingleForm><RegisterForm /></SingleForm>
+export const RegisterScreen: FC = () => <FormWrapper><RegisterForm /></FormWrapper>
