@@ -3,22 +3,19 @@
         "baseUrl": "./",
         "paths": {
             "@components": [
-                "src/components"
+                "src/view/components"
             ],
             "@common": [
-                "src/common"
+                "src/view/common"
             ],
             "@context": [
-                "src/context"
-            ],
-            "@layouts": [
-                "src/layouts"
+                "src/view/context"
             ],
             "@navigation": [
-                "src/navigation"
+                "src/view/navigation"
             ],
             "@pages": [
-                "src/pages"
+                "src/view/pages"
             ],
             "@dataSources": [
                 "src/infrastructure/dataSources"
@@ -33,7 +30,7 @@
                 "src/types"
             ],
             "@utils": [
-                "src/utils"
+                "src/infrastructure/utils"
             ],
             "@testingFixtures": [
                 "src/test/fixtures"
