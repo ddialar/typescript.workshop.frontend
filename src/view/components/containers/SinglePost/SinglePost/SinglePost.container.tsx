@@ -15,7 +15,7 @@ import {
   likeExtendedPost
 } from '@dataSources'
 import { AppContext } from '@context'
-import { POSTS_PATH } from '@navigation'
+import { POSTS_PATH } from '@common'
 interface Props {
     postId: string
 }
