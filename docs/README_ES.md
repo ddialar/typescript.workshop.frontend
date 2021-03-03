@@ -2,42 +2,42 @@
 
 <img src="https://img.shields.io/badge/Version-1.0.0-yellow" /> <img src="https://img.shields.io/badge/TypeScript-4.1.2-blue" /> <img src="https://img.shields.io/badge/Create%20React%20App-4.0.3-blue" />
 
-[🇬🇧 Version](https://github.com/ddialar/typescript.workshop.fontend/blob/master/README.md)
+[🇬🇧 Version](https://github.com/ddialar/typescript.workshop.frontend/blob/master/README.md)
 
 ## 📖 Index
 
--   [Description](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#description)
--   [Requisitos del sistema](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#requirements)
--   [Visión general del repositorio](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview)
-    -   [Variables de entorno](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-environment-variables) [TBD]
-    -   [Arquitectura](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture)
-        -   [view](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-view)
-            -   [common](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-common)
-            -   [components](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-components)
-            -   [context](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-context)
-            -   [navigation](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-navigation)
-            -   [pages](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-pages)
-            -   [Otras posibles secciones](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-other-elements)
-        -   [domain](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-domain)
-        -   [infrastructure](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-infrastructure)
-        -   [test](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-test) [TBD]
-        -   [types](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-architecture-types)
-    -   [Entornos de ejecución](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#repository-overview-environments) [TBD]
--   [Listado de comandos](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#commands)
-    -   [Cambiando la versión de NodeJS](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#commands-switch-node)
-    -   [Proceso de instalación de módulos](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#commands-installation)
-    -   [Ejecución de los tests](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#commands-tests) [TBD]
-    -   [Ejecución de la aplicación en modo desarrollo](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#commands-dev-mode)
-    -   [Compilación de la aplicación](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#commands-pro-mode)
--   [Reconocimientos y agradecimientos](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#credits-and-thanks)
--   [TODO list](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#todo-list)
--   [Elementos a investigar](https://github.com/ddialar/typescript.workshop.fontend/blob/master/docs/README_ES.md#research-list)
+-   [Description](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#description)
+-   [Requisitos del sistema](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#requirements)
+-   [Visión general del repositorio](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview)
+    -   [Variables de entorno](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-environment-variables) [TBD]
+    -   [Arquitectura](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture)
+        -   [view](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-view)
+            -   [common](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-common)
+            -   [components](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-components)
+            -   [context](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-context)
+            -   [navigation](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-navigation)
+            -   [pages](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-pages)
+            -   [Otras posibles secciones](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-other-elements)
+        -   [domain](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-domain)
+        -   [infrastructure](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-infrastructure)
+        -   [test](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-test) [TBD]
+        -   [types](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-types)
+    -   [Entornos de ejecución](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-environments) [TBD]
+-   [Listado de comandos](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands)
+    -   [Cambiando la versión de NodeJS](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-switch-node)
+    -   [Proceso de instalación de módulos](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-installation)
+    -   [Ejecución de los tests](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-tests) [TBD]
+    -   [Ejecución de la aplicación en modo desarrollo](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-dev-mode)
+    -   [Compilación de la aplicación](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-pro-mode)
+-   [Reconocimientos y agradecimientos](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#credits-and-thanks)
+-   [TODO list](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#todo-list)
+-   [Elementos a investigar](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#research-list)
 
 ## <a id="description"></a>🔍 Descripción
 
-Este repositorio está orientado a proporcionar el fontend para el taller de TypeScript al que pertenece.
+Este repositorio está orientado a proporcionar el frontend para el taller de TypeScript al que pertenece.
 
-En esta caso, estamos implementando el fontend de una aplicación de Social Media que permite registrar usuarios y que se autentiquen, crear y eliminar posts, crear y eliminar comentarios de posts y dar o quitar 'me gusta' a los posts.
+En esta caso, estamos implementando el frontend de una aplicación de Social Media que permite registrar usuarios y que se autentiquen, crear y eliminar posts, crear y eliminar comentarios de posts y dar o quitar 'me gusta' a los posts.
 
 La idea original de esta aplicación está tomada de este interesantísimo taller llamado [Build a Social Media App (MERNG stack)](https://morioh.com/p/07b0be424b5f?f=5ece1a68f0e6056e36305f65), creado por [Classsed](https://www.youtube.com/c/classsed) y publicado por [freecodecamp.org](https://www.freecodecamp.org/).
 
