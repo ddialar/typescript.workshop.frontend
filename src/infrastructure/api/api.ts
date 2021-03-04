@@ -12,8 +12,7 @@ export interface RequestArgs {
 export const runRequest = async ({ method, url, body, token, params, timeout = 5000 }: RequestArgs) => {
   const requestConfig = {
     method,
-    // TODO: The 'baseUrl' must be defined by an environment variable
-    baseUrl: 'http://localhost:3600',
+    baseUrl: process.env.BASE_URL,
     url,
     headers: {
       'Content-type': 'application/json; charset=utf-8',
