@@ -9,7 +9,7 @@
 -   [Description](https://github.com/ddialar/typescript.workshop.frontend#description)
 -   [System requirements](https://github.com/ddialar/typescript.workshop.frontend#requirements)
 -   [Repository overview](https://github.com/ddialar/typescript.workshop.frontend#repository-overview)
-    -   [Environment variables](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-environment-variables) [TBD]
+    -   [Environment variables](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-environment-variables)
     -   [Architecture](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-architecture)
         -   [view](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-architecture-view)
             -   [common](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-architecture-view-common)
@@ -49,6 +49,7 @@ Some tools used on this repository are next:
 
 -   ⚛️ `Create React App` for application scaffolding.
 -   🔀 `React Router Dom` for routing management.
+-   ⚙️ `.env` files for environment variables.
 -   💅 `Semantic UI` as styling framework.
 -   🤝 `Axios` for API communication.
 -   📦 `Webpack` for transpiling and bundling the TypeScript code.
@@ -80,7 +81,26 @@ In order to make this application works successfully, it's needed to run the dev
 
 ## <a id="repository-overview"></a>👀 Repository overview
 
-### <a id="repository-overview-environment-variables"></a>⚙️ Environment variables [TBD]
+### <a id="repository-overview-environment-variables"></a>⚙️ Environment variables
+
+Due to this repository is built under the Create React App umbrella, the base code scafollding includes `dotenv` as environmet variables handler. However, in order to use customized `.env` files, we need to follow the instructions provided by the [official documentation](https://create-react-app.dev/docs/adding-custom-environment-variables/#adding-development-environment-variables-in-env).
+
+Based on that, for this project we are going to have three different environment files, located at the root of the project. These files are next:
+
+-   `.env` for production.
+-   `.env.development` for development.
+-   `.env.test` for testing.
+
+Feel free to remove some of them or including additional ones depending on your application needs. Just keep in mind that you will have to follow the official documentation rules.
+
+The most basic fields we must include on these files are next:
+
+```sh
+# Set the base URL where the application will aims its requests.
+BASE_URL="http://localhost:3600"
+
+# Rest of the environment variables here.
+```
 
 ### <a id="repository-overview-architecture"></a>🏗 Architecture
 
@@ -269,7 +289,6 @@ Thanks a lot for a so incredible support to:
 
 ## <a id="todo-list"></a>📝 TODO list
 
--   Include `dotenv` as environment variables manager.
 -   Include [Jest](https://jestjs.io/) for unit tests.
 -   Include [Cypress](https://www.cypress.io/) as integration and E2E tests.
 -   Include [Joi](https://joi.dev/) as validation patterns tool.

@@ -9,7 +9,7 @@
 -   [Description](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#description)
 -   [Requisitos del sistema](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#requirements)
 -   [Visión general del repositorio](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview)
-    -   [Variables de entorno](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-environment-variables) [TBD]
+    -   [Variables de entorno](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-environment-variables)
     -   [Arquitectura](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture)
         -   [view](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-view)
             -   [common](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-common)
@@ -49,6 +49,7 @@ Algunas de las herramientas usadas en este repositorio son las siguientes:
 
 -   ⚛️ `Create React App` para la implementación base de la aplicación.
 -   🔀 `React Router Dom` para la gestión de rutas.
+-   ⚙️ `.env` para las variables de entorno.
 -   💅 `Semantic UI` como framework de estilos.
 -   🤝 `Axios` para las comunicaciones con la API.
 -   📦 `Webpack` para transpilar y empaquetar el código TypeScript.
@@ -80,7 +81,26 @@ Para hacer que esta aplicación funcione correctamente, se necesita ejecutar el 
 
 ## <a id="repository-overview"></a>👀 Visión general del repositorio
 
-### <a id="repository-overview-environment-variables"></a>⚙️ Variables de entorno [TBD]
+### <a id="repository-overview-environment-variables"></a>⚙️ Variables de entorno
+
+Dado que este repositorio está construido bajo el paraguas de Create React App, el código base incluye `dotenv` como gestor de variables de entorno. No obstante, para utilizar archivos `.env` personalizados, necesitamos seguir las instruciones dadas en la [documentación oficial](https://create-react-app.dev/docs/adding-custom-environment-variables/#adding-development-environment-variables-in-env).
+
+En base a esto, para este proyecto vamos a tener tres archivos de entorno diferentes, ubicados en la raíz del proyecto. Estos archivos son:
+
+-   `.env` para producción.
+-   `.env.development` para desarrollo.
+-   `.env.test` para testing.
+
+Siéntete totalmente libre de eliminar alguno de ellos o incluir otros dependiendo de las necesidades de tu aplicación. Tan sólo ten en cuenta que deberás seguir las indicaciones de la documentación oficial.
+
+Los principales campos que incluirán estos archivos son los siguientes:
+
+```sh
+# Set the base URL where the application will aims its requests.
+BASE_URL="http://localhost:3600"
+
+# Rest of the environment variables here.
+```
 
 ### <a id="repository-overview-architecture"></a>🏗 Arquitectura
 
@@ -271,7 +291,6 @@ Muchísimas gracias por el incalculable apoyo prestado por:
 
 ## <a id="todo-list"></a>📝 TODO list
 
--   Incluir `dotenv` como gestor de configuraciones de entorno.
 -   Incluir [Jest](https://jestjs.io/) para testing unitario.
 -   Incluir [Cypress](https://www.cypress.io/) para tests de integración y E2E.
 -   Incluir [Joi](https://joi.dev/) como herramienta de validación de patrones.
