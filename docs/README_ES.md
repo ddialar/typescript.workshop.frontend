@@ -53,6 +53,7 @@ Algunas de las herramientas usadas en este repositorio son las siguientes:
 -   🤝 `Axios` para las comunicaciones con la API.
 -   📦 `Webpack` para transpilar y empaquetar el código TypeScript.
 -   🔒 `JWT` como servicio de tokens.
+-   🐶 `Husky` para la gestión de los Git Hooks.
 -   🔍 `ESLint` para la revisión y formateado del código.
 
 Además este repositorio está diseñado para trabajar con `NodeJS 14.15.0 LTS`.
@@ -274,7 +275,6 @@ Muchísimas gracias por el incalculable apoyo prestado por:
 -   Incluir [Jest](https://jestjs.io/) para testing unitario.
 -   Incluir [Cypress](https://www.cypress.io/) para tests de integración y E2E.
 -   Incluir [Joi](https://joi.dev/) como herramienta de validación de patrones.
--   Incluir [Husky v5](https://github.com/typicode/husky) como gestor de Git Actions.
 -   Incluir soporte internacional multi-idioma.
 -   Incluir la configuración para 'producción' para compilar y generar el conenedor de Docker listo para ser desplegado.
 -   Incluir el archivo `manifest.json`.
