@@ -7,11 +7,13 @@ import { AppContext } from '@context'
 import { BasicPost, SingleFormValue } from '@types'
 import { PostCard, SingleFieldForm, Spinner } from '@components'
 import { getAllPosts, getAllExtendedPosts, deletePostById, dislikePost, likePost, createNewPost } from '@dataSources'
+import { validateNewPostParams } from '@validators'
 
 export const PostsList: FC = () => {
   const { user } = useContext(AppContext)
   const [posts, setPosts] = useState<BasicPost[]>([])
   const [loading, setLoading] = useState(false)
+  const [fieldError, setFieldError] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -48,15 +50,22 @@ export const PostsList: FC = () => {
   }
 
   const addPost = async (postBody: SingleFormValue['fieldContent']) => {
-    const { token } = user!
-
-    const result = await createNewPost(postBody, token)
-
-    if ('error' in result) {
-      setError(result.message)
+    const validationResult = validateNewPostParams({ postBody })
+    if (validationResult.thereAreErrors) {
+      setFieldError(validationResult.postBody!)
     } else {
-      setError(null)
-      setPosts([...posts, result])
+      setFieldError(null)
+
+      const { token } = user!
+
+      const result = await createNewPost(postBody, token)
+
+      if ('error' in result) {
+        setError(result.message)
+      } else {
+        setError(null)
+        setPosts([...posts, result])
+      }
     }
   }
 
@@ -88,6 +97,7 @@ export const PostsList: FC = () => {
                 <SingleFieldForm
                   title="Create a new post:"
                   placeholder="Hi world!!!"
+                  error={fieldError}
                   onSubmit={addPost}
                 />
               </Grid.Column>
