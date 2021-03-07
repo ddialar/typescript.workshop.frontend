@@ -18,10 +18,10 @@ import {
 } from './RegisterForm.constants'
 import { registryNewUser } from '@dataSources'
 import { LOGIN_PATH } from '@common'
-import { RegisteredUser } from '@types'
+import { SigninFormData, RegisteredUser } from '@types'
 
 // REFACTOR Remove these presets
-const initialValues = {
+const initialValues: SigninFormData = {
   name: 'Jane',
   surname: 'Doe',
   avatar: 'https://cdn.icon-icons.com/icons2/1736/PNG/128/4043245-avatar-coffee-cup-zorro_113282.png',
@@ -39,7 +39,7 @@ const initialRegisteredUser: RegisteredUser = {
 export const RegisterForm: FC = () => {
   const history = useHistory()
 
-  const [values, setValues] = useState(initialValues)
+  const [values, setValues] = useState<SigninFormData>(initialValues)
   const [registeredUser, setRegisteredUser] = useState<RegisteredUser>(initialRegisteredUser)
   const [loading, setLoading] = useState(false)
   const [requestError, setRequestError] = useState<string | null>(null)
