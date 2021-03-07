@@ -20,7 +20,7 @@
             -   [Other possible sections](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-architecture-view-other-elements)
         -   [domain](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-architecture-domain)
         -   [infrastructure](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-architecture-infrastructure)
-        -   [test](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-architecture-test) [TBD]
+        -   [test](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-architecture-test)
         -   [types](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-architecture-types)
     -   [Execution environments](https://github.com/ddialar/typescript.workshop.frontend#repository-overview-environments) [TBD]
 -   [Commands guide](https://github.com/ddialar/typescript.workshop.frontend#commands)
@@ -54,6 +54,8 @@ Some tools used on this repository are next:
 -   🤝 `Axios` for API communication.
 -   📦 `Webpack` for transpiling and bundling the TypeScript code.
 -   🔒 `JWT` as token service.
+-   ✅ `Joi` for validating input data.
+-   🧪 `Jest` for unit testing.
 -   🐶 `Husky` for managing the Git Hooks.
 -   🔍 `ESLint` for code linting and formating.
 
@@ -77,7 +79,7 @@ In addition, it's advisable to have next:
 -   Web browser (recomended Google Chrome 88.0)
 -   Code editor (recomended VScode 1.52.1)
 
-In order to make this application works successfully, it's needed to run the development server located in this repository: [TypeScript Workshop Backend](https://github.com/ddialar/typescript.workshop.backend).
+⚠️ In order to make this application works successfully, it's needed to run the development server located in this repository: [TypeScript Workshop Backend](https://github.com/ddialar/typescript.workshop.backend).
 
 ## <a id="repository-overview"></a>👀 Repository overview
 
@@ -233,7 +235,15 @@ To reach that goal, the code included into this layer is divided like that:
 
     This folder contains auxiliar resources like localstorage access.
 
-#### <a id="repository-overview-architecture-test"></a>🧪 test [TBD]
+#### <a id="repository-overview-architecture-test"></a>🧪 test
+
+The testing strategy selected in this repository, for both cases for unit and integration tests, is to keep them as close as possible to the code that they are checking.
+
+By this reason, you will find several `test` folders into the different sections of this code.
+
+Webpack is already configured to ignore these files when the code is compiled for production environment.
+
+Once said that, the content of this folder is a set of common tools used along the whole code and the main part are the fixtures used in order to emulate the real running conditions.
 
 #### <a id="repository-overview-architecture-types"></a>🪢 types
 
@@ -259,7 +269,12 @@ nvm use
 npm i
 ```
 
-### <a id="commands-tests"></a>🧪 Run tests [TBD]
+### <a id="commands-tests"></a>🧪 Run tests
+
+```sh
+# Unit tests
+npm test
+```
 
 ### <a id="commands-dev-mode"></a>🏭 Run application in development mode
 
@@ -289,9 +304,7 @@ Thanks a lot for a so incredible support to:
 
 ## <a id="todo-list"></a>📝 TODO list
 
--   Include [Jest](https://jestjs.io/) for unit tests.
 -   Include [Cypress](https://www.cypress.io/) as integration and E2E tests.
--   Include [Joi](https://joi.dev/) as validation patterns tool.
 -   Include multi-lingual internationalizaton support.
 -   Include production configuration to compile and generate Docker container ready to deploy.
 -   Include the `manifest.json` file.

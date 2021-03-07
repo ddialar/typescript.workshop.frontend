@@ -20,13 +20,13 @@
             -   [Otras posibles secciones](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-view-other-elements)
         -   [domain](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-domain)
         -   [infrastructure](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-infrastructure)
-        -   [test](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-test) [TBD]
+        -   [test](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-test)
         -   [types](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-architecture-types)
     -   [Entornos de ejecución](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#repository-overview-environments) [TBD]
 -   [Listado de comandos](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands)
     -   [Cambiando la versión de NodeJS](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-switch-node)
     -   [Proceso de instalación de módulos](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-installation)
-    -   [Ejecución de los tests](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-tests) [TBD]
+    -   [Ejecución de los tests](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-tests)
     -   [Ejecución de la aplicación en modo desarrollo](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-dev-mode)
     -   [Compilación de la aplicación](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#commands-pro-mode)
 -   [Reconocimientos y agradecimientos](https://github.com/ddialar/typescript.workshop.frontend/blob/master/docs/README_ES.md#credits-and-thanks)
@@ -54,6 +54,8 @@ Algunas de las herramientas usadas en este repositorio son las siguientes:
 -   🤝 `Axios` para las comunicaciones con la API.
 -   📦 `Webpack` para transpilar y empaquetar el código TypeScript.
 -   🔒 `JWT` como servicio de tokens.
+-   ✅ `Joi` para la validación de datos.
+-   🧪 `Jest` para los tests unitarios.
 -   🐶 `Husky` para la gestión de los Git Hooks.
 -   🔍 `ESLint` para la revisión y formateado del código.
 
@@ -77,7 +79,7 @@ Además de esto, es recomendable que cuentes con lo siguiente:
 -   Navegador web (recomendado Google Chrome 88.0)
 -   Editor de código (recomendado VScode 1.52.1)
 
-Para hacer que esta aplicación funcione correctamente, se necesita ejecutar el servidor de desarrollo ubicado en este repositorio: [TypeScript Workshop Backend](https://github.com/ddialar/typescript.workshop.backend).
+⚠️ Para hacer que esta aplicación funcione correctamente, se necesita ejecutar el servidor de desarrollo ubicado en este repositorio: [TypeScript Workshop Backend](https://github.com/ddialar/typescript.workshop.backend).
 
 ## <a id="repository-overview"></a>👀 Visión general del repositorio
 
@@ -233,7 +235,15 @@ Para alcanzar este objetivo, esta capa se divide en diferentes secciones:
 
     Este directorio contiene recursos auxiliares como el acceso al localstorage.
 
-#### <a id="repository-overview-architecture-test"></a>🧪 test [TBD]
+#### <a id="repository-overview-architecture-test"></a>🧪 test
+
+La estrategia de testing seleccionada en este repositorio, para ambos casos, tests unitarios y de integración, es mantenerlos tan cerca como sea posible del códigio que intentan comprobar.
+
+Por esta razón verás que hay varios directorios `test` dentro de las diferentes secciones de este repositorio.
+
+Webpack está configurado para ignorar estos archivos cuando el códigio es compilado para producción.
+
+Una vez dicho esto, el contenido de este directorio es un conjunto de herramientas comunes usadas a lo largo de todo el código y la parte principal está compuesta por las `fixtures` que nos permiten emular condiciones de funcionamiento reales.
 
 #### <a id="repository-overview-architecture-types"></a>🪢 types
 
@@ -259,7 +269,12 @@ nvm use
 npm i
 ```
 
-### <a id="commands-tests"></a>🧪 Ejecución de los tests [TBD]
+### <a id="commands-tests"></a>🧪 Ejecución de los tests
+
+```sh
+# Tests unitarios .
+npm test
+```
 
 ### <a id="commands-dev-mode"></a>🏭 Ejecución de la aplicación en modo desarrollo
 
@@ -291,9 +306,7 @@ Muchísimas gracias por el incalculable apoyo prestado por:
 
 ## <a id="todo-list"></a>📝 TODO list
 
--   Incluir [Jest](https://jestjs.io/) para testing unitario.
 -   Incluir [Cypress](https://www.cypress.io/) para tests de integración y E2E.
--   Incluir [Joi](https://joi.dev/) como herramienta de validación de patrones.
 -   Incluir soporte internacional multi-idioma.
 -   Incluir la configuración para 'producción' para compilar y generar el conenedor de Docker listo para ser desplegado.
 -   Incluir el archivo `manifest.json`.
