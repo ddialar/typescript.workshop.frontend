@@ -22,6 +22,7 @@ describe('[VALIDATORS] validateLoginParams', () => {
       password: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       username: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -37,6 +38,7 @@ describe('[VALIDATORS] validateLoginParams', () => {
     }
 
     const expectedResult = {
+      thereAreErrors: true,
       username: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -50,6 +52,7 @@ describe('[VALIDATORS] validateLoginParams', () => {
       username
     }
     const expectedResult = {
+      thereAreErrors: true,
       password: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -64,6 +67,7 @@ describe('[VALIDATORS] validateLoginParams', () => {
       password: '123' // Password too short.
     }
     const expectedResult = {
+      thereAreErrors: true,
       password: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -78,6 +82,7 @@ describe('[VALIDATORS] validateLoginParams', () => {
       password: '123$#%'
     }
     const expectedResult = {
+      thereAreErrors: true,
       password: GENERIC_FIELD_ERROR_MESSAGE
     }
 
