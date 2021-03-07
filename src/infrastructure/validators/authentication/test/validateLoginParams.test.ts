@@ -10,7 +10,9 @@ describe('[VALIDATORS] validateLoginParams', () => {
       username,
       password: testingValidPlainPassword
     }
-    const expectedResult = {}
+    const expectedResult = {
+      thereAreErrors: false
+    }
 
     const result = validateLoginParams(loginData)
 

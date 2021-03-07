@@ -7,7 +7,9 @@ describe('[VALIDATORS] - validateNewPostParams', () => {
     const postData = {
       postBody: testingPostBody
     }
-    const expectedResult = {}
+    const expectedResult = {
+      thereAreErrors: false
+    }
 
     const result = validateNewPostParams(postData)
 

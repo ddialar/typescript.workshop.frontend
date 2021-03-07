@@ -14,7 +14,9 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       password: testingValidPlainPassword,
       confirmPassword: testingValidPlainPassword
     }
-    const expectedResult = {}
+    const expectedResult = {
+      thereAreErrors: false
+    }
 
     const result = validateSigninParams(signinData)
 
