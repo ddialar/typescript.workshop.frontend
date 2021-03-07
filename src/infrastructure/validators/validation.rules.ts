@@ -1,12 +1,12 @@
 import Joi from 'joi'
 
 export const body = Joi.string()
-export const email = Joi.string().email({ minDomainSegments: 2, tlds: { allow: true } }).required()
+export const email = Joi.string().email({ minDomainSegments: 2, tlds: { allow: false } }).required()
 export const url = Joi.string().uri({
   scheme: ['http', 'https'],
   domain: {
     minDomainSegments: 2,
-    tlds: { allow: true }
+    tlds: { allow: false }
   }
 })
 
