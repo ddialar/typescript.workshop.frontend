@@ -30,6 +30,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       email: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -48,6 +49,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       email: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -65,6 +67,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       password: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -83,6 +86,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       password: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -101,6 +105,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       password: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -118,6 +123,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       password: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       confirmPassword: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -136,6 +142,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: '123' // Password too short.
     }
     const expectedResult = {
+      thereAreErrors: true,
       confirmPassword: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -154,6 +161,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: '123$#%'
     }
     const expectedResult = {
+      thereAreErrors: true,
       confirmPassword: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -172,6 +180,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword.concat('123')
     }
     const expectedResult = {
+      thereAreErrors: true,
       password: PASSWORD_MISMATCH_ERROR_MESSAGE,
       confirmPassword: PASSWORD_MISMATCH_ERROR_MESSAGE
     }
@@ -190,6 +199,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       name: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -208,6 +218,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       name: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -225,6 +236,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       surname: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -243,6 +255,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       surname: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -260,6 +273,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       avatar: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -278,6 +292,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       avatar: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -296,6 +311,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       avatar: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -314,6 +330,7 @@ describe('[VALIDATORS] - validateSigninParams', () => {
       confirmPassword: testingValidPlainPassword
     }
     const expectedResult = {
+      thereAreErrors: true,
       avatar: GENERIC_FIELD_ERROR_MESSAGE
     }
 
