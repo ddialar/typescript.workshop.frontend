@@ -4,6 +4,7 @@ import { Grid } from 'semantic-ui-react'
 
 import { FullPost, SingleFormValue } from '@types'
 import { SingleFieldForm, SinglePostHeader, SinglePostComment, Avatar, ErrorComponent, Spinner } from '@components'
+import { validateNewPostCommentParams } from '@validators'
 
 import {
   createNewPostComment,
@@ -25,6 +26,7 @@ export const SinglePost: FC<Props> = ({ postId }) => {
   const { user } = useContext(AppContext)
   const [post, setPost] = useState<FullPost | null>(null)
   const [loading, setLoading] = useState(false)
+  const [fieldError, setFieldError] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -77,16 +79,23 @@ export const SinglePost: FC<Props> = ({ postId }) => {
   }
 
   const addComment = async (commentBody: SingleFormValue['fieldContent']) => {
-    const { token } = user!
-    const { id: postId } = post!
-
-    const result = await createNewPostComment(postId, commentBody, token)
-
-    if ('error' in result) {
-      setError(result.message)
+    const validationResult = validateNewPostCommentParams({ commentBody })
+    if (validationResult.thereAreErrors) {
+      setFieldError(validationResult.commentBody!)
     } else {
-      setError(null)
-      setPost(result)
+      setFieldError(null)
+
+      const { token } = user!
+      const { id: postId } = post!
+
+      const result = await createNewPostComment(postId, commentBody, token)
+
+      if ('error' in result) {
+        setError(result.message)
+      } else {
+        setError(null)
+        setPost(result)
+      }
     }
   }
 
@@ -124,7 +133,7 @@ export const SinglePost: FC<Props> = ({ postId }) => {
                 ? <SingleFieldForm
                   title="New post comment:"
                   placeholder="Really nice content!!!"
-                  error={null}
+                  error={fieldError}
                   onSubmit={addComment} />
                 : null
             }
