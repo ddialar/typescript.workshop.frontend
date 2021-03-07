@@ -21,6 +21,8 @@ export interface NewUserRegistryData {
   password: string
 }
 
+export type SigninFormData = NewUserRegistryData & { confirmPassword: string }
+
 export interface RegisteredUser {
   username: string
   fullName: string
