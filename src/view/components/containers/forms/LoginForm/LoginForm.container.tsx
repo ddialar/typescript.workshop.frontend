@@ -4,18 +4,20 @@ import { Form, Button } from 'semantic-ui-react'
 import { AppContext } from '@context'
 import { login } from '@dataSources'
 import { Spinner } from '@components'
+import { validateLoginParams } from '@validators'
 
 import {
   LOGIN_FORM_TITLE,
   LOGIN_FORM_BUTTON_TEXT,
   LOGIN_FORM_USERNAME,
   LOGIN_FORM_USERNAME_PLACEHOLDER,
-  LOGIN_FORM_PASSWORD
+  LOGIN_FORM_PASSWORD,
+  LOGIN_FORM_PASSWORD_PLACEHOLDER
 } from './LoginForm.constants'
-import { ApiError, AuthenticatedUser } from '@types'
+import { ApiError, AuthenticatedUser, LoginParams } from '@types'
 
 // REFACTOR Remove these presets
-const initialValues = {
+const initialValues: LoginParams = {
   username: 'trenton.kutch@mail.com',
   password: '123456'
 }
@@ -27,6 +29,7 @@ interface Props {
 export const LoginForm: FC<Props> = ({ callback }) => {
   const [values, setValues] = useState(initialValues)
   const [loading, setLoading] = useState(false)
+  const [fieldErrors, setFieldErrors] = useState<Partial<LoginParams>>({})
   const [requestError, setRequestError] = useState<string | null>(null)
   const { setUserData, removeUserData } = useContext(AppContext)
 
@@ -46,6 +49,13 @@ export const LoginForm: FC<Props> = ({ callback }) => {
 
   const onSubmit = async (event: SyntheticEvent) => {
     event.preventDefault()
+
+    const validationResult = validateLoginParams(values)
+    console.log(JSON.stringify(validationResult, null, 4))
+
+    setFieldErrors(validationResult)
+
+    if (validationResult.thereAreErrors) { return }
 
     setLoading(true)
     const result = await login(values)
@@ -68,13 +78,16 @@ export const LoginForm: FC<Props> = ({ callback }) => {
           name="username"
           type="email"
           value={values.username}
+          error={fieldErrors.username}
           onChange={onChange}
         />
         <Form.Input
           label={LOGIN_FORM_PASSWORD}
+          placeholder={LOGIN_FORM_PASSWORD_PLACEHOLDER}
           name="password"
           type="password"
           value={values.password}
+          error={fieldErrors.password}
           onChange={onChange}
         />
         <Button type="submit" primary>{LOGIN_FORM_BUTTON_TEXT}</Button>
