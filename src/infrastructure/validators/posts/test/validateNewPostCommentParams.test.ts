@@ -17,6 +17,7 @@ describe('[VALIDATORS] - validateNewPostCommentParams', () => {
   it('returns an error when comment body is not provided', () => {
     const postData = {}
     const expectedResult = {
+      thereAreErrors: true,
       commentBody: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -30,6 +31,7 @@ describe('[VALIDATORS] - validateNewPostCommentParams', () => {
       commentBody: ''
     }
     const expectedResult = {
+      thereAreErrors: true,
       commentBody: GENERIC_FIELD_ERROR_MESSAGE
     }
 

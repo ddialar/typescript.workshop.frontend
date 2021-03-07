@@ -17,6 +17,7 @@ describe('[VALIDATORS] - validateNewPostParams', () => {
   it('returns an error when post body is not provided', () => {
     const postData = {}
     const expectedResult = {
+      thereAreErrors: true,
       postBody: GENERIC_FIELD_ERROR_MESSAGE
     }
 
@@ -30,6 +31,7 @@ describe('[VALIDATORS] - validateNewPostParams', () => {
       postBody: ''
     }
     const expectedResult = {
+      thereAreErrors: true,
       postBody: GENERIC_FIELD_ERROR_MESSAGE
     }
 
