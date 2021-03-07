@@ -4,7 +4,7 @@ import { Form, Button } from 'semantic-ui-react'
 import { AppContext } from '@context'
 import { login } from '@dataSources'
 import { Spinner } from '@components'
-import { validateLoginParams } from '@validators'
+import { validateLoginParams, FormatedValidation } from '@validators'
 
 import {
   LOGIN_FORM_TITLE,
@@ -29,7 +29,7 @@ interface Props {
 export const LoginForm: FC<Props> = ({ callback }) => {
   const [values, setValues] = useState(initialValues)
   const [loading, setLoading] = useState(false)
-  const [fieldErrors, setFieldErrors] = useState<Partial<LoginParams>>({})
+  const [fieldErrors, setFieldErrors] = useState<FormatedValidation<Partial<LoginParams>>>({ thereAreErrors: false })
   const [requestError, setRequestError] = useState<string | null>(null)
   const { setUserData, removeUserData } = useContext(AppContext)
 
@@ -51,10 +51,7 @@ export const LoginForm: FC<Props> = ({ callback }) => {
     event.preventDefault()
 
     const validationResult = validateLoginParams(values)
-    console.log(JSON.stringify(validationResult, null, 4))
-
     setFieldErrors(validationResult)
-
     if (validationResult.thereAreErrors) { return }
 
     setLoading(true)
