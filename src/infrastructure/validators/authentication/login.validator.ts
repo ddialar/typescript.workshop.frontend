@@ -3,14 +3,9 @@ import { LoginParams } from '@types'
 import { usernameSchema, passwordSchema } from '../validation.schemas'
 import { formatValidationResult } from '../validation.common'
 
-interface LoginValidationResult {
-  username?: string
-  password?: string
-}
-
-export const validateLoginParams = ({ username, password }: Partial<LoginParams>): LoginValidationResult => {
+export const validateLoginParams = ({ username, password }: Partial<LoginParams>): Partial<LoginParams> => {
   const usernameResult = usernameSchema.validate({ username })
   const passwordResult = passwordSchema.validate({ password })
 
-  return formatValidationResult<LoginValidationResult>([usernameResult, passwordResult])
+  return formatValidationResult<Partial<LoginParams>>([usernameResult, passwordResult])
 }
