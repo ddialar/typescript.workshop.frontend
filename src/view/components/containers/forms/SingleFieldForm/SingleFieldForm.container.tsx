@@ -5,6 +5,7 @@ import { Button, Form } from 'semantic-ui-react'
 interface Props {
   title: string
   placeholder?: string
+  error: string | null
   onSubmit: (fieldContent: SingleFormValue['fieldContent']) => Promise<void>
 }
 
@@ -12,9 +13,8 @@ const initialFormValues: SingleFormValue = {
   fieldContent: ''
 }
 
-export const SingleFieldForm: FC<Props> = ({ title, placeholder, onSubmit }) => {
+export const SingleFieldForm: FC<Props> = ({ title, placeholder, error = null, onSubmit }) => {
   const [values, setValues] = useState(initialFormValues)
-  const [formErrorMessage, setFormErrorMessage] = useState<string | null>(null)
 
   const onChange = ({ currentTarget: { name, value } }: FormEvent<HTMLInputElement>) => {
     setValues({ ...values, [name]: value })
@@ -22,14 +22,8 @@ export const SingleFieldForm: FC<Props> = ({ title, placeholder, onSubmit }) => 
 
   const _onSubmit = async (event: SyntheticEvent) => {
     event.preventDefault()
-
-    if (values.fieldContent !== '') {
-      await onSubmit(values.fieldContent)
-      setFormErrorMessage(null)
-      setValues(initialFormValues)
-    } else {
-      setFormErrorMessage('Field format error')
-    }
+    await onSubmit(values.fieldContent)
+    setValues(initialFormValues)
   }
 
   return (
@@ -40,9 +34,9 @@ export const SingleFieldForm: FC<Props> = ({ title, placeholder, onSubmit }) => 
           <Form.Input
             placeholder={placeholder}
             name="fieldContent"
+            error={error}
             onChange={onChange}
             value={values.fieldContent}
-            error={formErrorMessage}
           />
           <Button
             type="submit"
