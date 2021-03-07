@@ -1,7 +1,12 @@
 import { FC, FormEvent, SyntheticEvent, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Form, Button } from 'semantic-ui-react'
+
 import { NewUserRegisteredModal, Spinner } from '@components'
+import { registryNewUser } from '@dataSources'
+import { LOGIN_PATH } from '@common'
+import { SigninFormData, RegisteredUser } from '@types'
+import { validateSigninParams, FormatedValidation } from '@validators'
 
 import {
   REGISTER_FORM_TITLE,
@@ -14,11 +19,9 @@ import {
   REGISTER_FORM_EMAIL_PLACEHOLDER,
   REGISTER_FORM_PASSWORD,
   REGISTER_FORM_CONFIRM_PASSWORD,
+  REGISTER_FORM_PASSWORD_PLACEHOLDER,
   REGISTER_FORM_AVATAR
 } from './RegisterForm.constants'
-import { registryNewUser } from '@dataSources'
-import { LOGIN_PATH } from '@common'
-import { SigninFormData, RegisteredUser } from '@types'
 
 // REFACTOR Remove these presets
 const initialValues: SigninFormData = {
@@ -42,6 +45,7 @@ export const RegisterForm: FC = () => {
   const [values, setValues] = useState<SigninFormData>(initialValues)
   const [registeredUser, setRegisteredUser] = useState<RegisteredUser>(initialRegisteredUser)
   const [loading, setLoading] = useState(false)
+  const [fieldErrors, setFieldErrors] = useState<FormatedValidation<Partial<SigninFormData>>>({ thereAreErrors: false })
   const [requestError, setRequestError] = useState<string | null>(null)
 
   const [modalOpen, setOpen] = useState(false)
@@ -52,6 +56,10 @@ export const RegisterForm: FC = () => {
 
   const onSubmit = async (event: SyntheticEvent) => {
     event.preventDefault()
+
+    const validationResult = validateSigninParams(values)
+    setFieldErrors(validationResult)
+    if (validationResult.thereAreErrors) { return }
 
     setLoading(true)
 
@@ -86,6 +94,7 @@ export const RegisterForm: FC = () => {
           name="name"
           type="text"
           value={values.name}
+          error={fieldErrors.name}
           onChange={onChange}
         />
         <Form.Input
@@ -94,6 +103,7 @@ export const RegisterForm: FC = () => {
           name="surname"
           type="text"
           value={values.surname}
+          error={fieldErrors.surname}
           onChange={onChange}
         />
         <Form.Input
@@ -101,6 +111,7 @@ export const RegisterForm: FC = () => {
           name="avatar"
           type="text"
           value={values.avatar}
+          error={fieldErrors.avatar}
           onChange={onChange}
         />
         <Form.Input
@@ -109,20 +120,25 @@ export const RegisterForm: FC = () => {
           name="email"
           type="email"
           value={values.email}
+          error={fieldErrors.email}
           onChange={onChange}
         />
         <Form.Input
           label={REGISTER_FORM_PASSWORD}
+          placeholder={REGISTER_FORM_PASSWORD_PLACEHOLDER}
           name="password"
           type="password"
           value={values.password}
+          error={fieldErrors.password}
           onChange={onChange}
         />
         <Form.Input
           label={REGISTER_FORM_CONFIRM_PASSWORD}
+          placeholder={REGISTER_FORM_PASSWORD_PLACEHOLDER}
           name="confirmPassword"
           type="password"
           value={values.confirmPassword}
+          error={fieldErrors.confirmPassword}
           onChange={onChange}
         />
         <Button type="submit" primary>{REGISTER_FORM_BUTTON_TEXT}</Button>
