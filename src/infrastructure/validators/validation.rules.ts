@@ -10,8 +10,12 @@ export const url = Joi.string().uri({
   }
 })
 
+export const name = Joi.string().min(2).required()
+export const surname = Joi.string().min(2).required()
+export const avatar = url.required()
 export const username = email
 export const password = Joi.string().pattern(/^[a-zA-Z0-9]{4,}$/).required()
+export const confirmPassword = password
 export const optionalAvatar = url
 
 export const postBody = body.required()
