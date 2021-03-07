@@ -124,6 +124,7 @@ export const SinglePost: FC<Props> = ({ postId }) => {
                 ? <SingleFieldForm
                   title="New post comment:"
                   placeholder="Really nice content!!!"
+                  error={null}
                   onSubmit={addComment} />
                 : null
             }
