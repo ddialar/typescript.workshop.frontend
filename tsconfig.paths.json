@@ -26,6 +26,9 @@
             "@api": [
                 "src/infrastructure/api"
             ],
+            "@validators": [
+                "src/infrastructure/validators"
+            ],
             "@types": [
                 "src/types"
             ],
