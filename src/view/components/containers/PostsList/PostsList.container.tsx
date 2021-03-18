@@ -5,7 +5,7 @@ import { SECTION_TITLE, NO_POSTS_MESSAGE } from './PostsList.constants'
 
 import { AppContext } from '@context'
 import { BasicPost, SingleFormValue } from '@types'
-import { PostCard, SingleFieldForm, Spinner } from '@components'
+import { PostCard, SingleFieldForm, Spinner, ErrorComponent } from '@components'
 import { getAllPosts, getAllExtendedPosts, deletePostById, dislikePost, likePost, createNewPost } from '@dataSources'
 import { validateNewPostParams } from '@validators'
 
@@ -126,7 +126,7 @@ export const PostsList: FC = () => {
         <Grid.Row>
           <Grid.Column textAlign="center">
             <h1>{posts ? SECTION_TITLE : NO_POSTS_MESSAGE}</h1>
-            {error ? (<div className="ui error message">{error}</div>) : null}
+            {error ? (<ErrorComponent message={error}/>) : null}
           </Grid.Column>
         </Grid.Row>
         {posts ? processPosts(posts) : null}

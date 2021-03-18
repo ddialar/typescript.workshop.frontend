@@ -1,1 +1,1 @@
-export * from './PostsList.layout'
+export * from './PostsList.container'
