@@ -120,23 +120,23 @@ La estructura completa de directorios es la siguiente:
 
 ```
 src/
- +- view/
- |   +- common/
- |   +- components/
- |   |   +- containers/
- |   |   +- presentationals/
- |   +- context/
- |   +- navigation/
- |   +- pages/
- +- domain/ [tbd]
- +- infrastructure/
- |   +- api/
- |   +- dataSources/
- |   +- mappers/
- |   +- utils/
- +- types/
- +- test
-     +- fixtures
+  📂 view/
+  |   📂 common/
+  |   📂 components/
+  |   |   📂 containers/
+  |   |   📂 presentationals/
+  |   📂 context/
+  |   📂 navigation/
+  |   📂 pages/
+  📂 domain/ [tbd]
+  📂 infrastructure/
+  |   📂 api/
+  |   📂 dataSources/
+  |   📂 mappers/
+  |   📂 utils/
+  📂 types/
+  📂 test
+      📂 fixtures
 ```
 
 #### <a id="repository-overview-architecture-view"></a>🖼 view
